@@ -3,9 +3,8 @@
     <nav>
       <h1><router-link to="/">kiril.photography</router-link></h1>
       <div>
-        <a>portraits</a>
-        <a>street</a>
-        <a>about</a>
+        <router-link to="/projects">projects</router-link>
+        <router-link to="/about">about</router-link>
       </div>
     </nav>
   </header>

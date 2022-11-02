@@ -1,7 +1,7 @@
 <template>
   <section class="section">
     <div>
-      <router-link class="project" to="/projects/project-detail">
+      <router-link class="project" :to="projectDetailLink">
         <img class="image" :src="image" alt="">
       </router-link>
     </div>
@@ -17,7 +17,12 @@
       'date',
       'location',
       'image'
-    ]
+    ],
+    computed: {
+      projectDetailLink() {
+        return '/projects/' + this.id
+      }
+    }
   }
 </script>
 

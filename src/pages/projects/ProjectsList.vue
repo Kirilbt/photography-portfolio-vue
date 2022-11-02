@@ -3,6 +3,7 @@
     <div class="container">
       <ProjectItem
         v-for="project in projects"
+        :id="project.id"
         :key="project.id"
         :title="project.title"
         :image="project.image"

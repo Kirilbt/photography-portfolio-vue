@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 
 import router from './router.js'
 
-import './style.css'
+import './reset.css'
 
 import App from './App.vue'
 

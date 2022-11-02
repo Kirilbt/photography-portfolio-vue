@@ -77,11 +77,11 @@ html {
   font-weight: 400;
   font-style: normal;
   font-size: calc(100vw / 1440px * 10px);
-  height: var(--100vh);
-  overflow: hidden;
-  left: 0;
-  position: fixed;
-  top: 0;
+  height: 100vh;
+  /* overflow: hidden; */
+  /* left: 0; */
+  /* position: fixed; */
+  /* top: 0; */
   width: 100%;
 }
 

@@ -10,7 +10,7 @@ const router = createRouter({
   routes: [
     { path: '/', redirect: '/projects' },
     { path: '/projects', component: ProjectsListVue },
-    { path: '/projects/:id', component: ProjectDetailVue, props: true },
+    { path: '/projects/project-detail', component: ProjectDetailVue, props: true },
     { path: '/about', component: AboutVue },
     { path: '/:notFound(.*)', component: NotFound },
   ]

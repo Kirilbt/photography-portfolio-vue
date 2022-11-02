@@ -20,7 +20,7 @@
     padding: 1rem;
   }
 
-  div a {
+  div a:not(:first-child) {
     margin-left: 1rem;
   }
 </style>

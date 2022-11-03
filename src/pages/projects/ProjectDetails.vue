@@ -2,7 +2,7 @@
   <div class="container">
     <img class="main-image" src="../../assets/images/summer.jpg" alt="">
     <div class="project-details">
-      <h2 class="title">Title</h2>
+      <h2 class="title"> {{ title }}</h2>
       <p class="details">
         Model - Sabrina Barca<br>
         Date - September 2018 <br>

@@ -3,7 +3,8 @@
     <div class="404-message">
       <img src="../assets/images/404/404.gif" alt="">
       <h2 class="title">Page Not Found</h2>
-      <p>This page could not be found or doesn't exist - go back to all <router-link to="/projects">projects</router-link></p>
+      <p>We couldn't find the page you were looking for.</p><br>
+      <p>Go back to all <router-link to="/projects">projects</router-link></p>
     </div>
   </div>
 </template>

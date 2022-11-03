@@ -2,7 +2,7 @@
   <main>
     <div class="container">
       <ProjectItem
-        v-for="project in projects"
+        v-for="project in store.projects"
         :id="project.id"
         :title="project.title"
         :image="project.image"
@@ -13,59 +13,18 @@
 
 <script>
 import ProjectItem from '../../components/projects/ProjectItem.vue'
-
-import summer from '../../assets/images/summer.jpg'
-import power from '../../assets/images/power.jpg'
-import minimal from '../../assets/images/minimal.jpg'
-import neon from '../../assets/images/neon.jpg'
-import light from '../../assets/images/light.jpg'
+import { useProjectsStore } from '../../stores/projects.js'
 
 export default {
   components: {
     ProjectItem
   },
-  data() {
-    return {
-      projects: [
-        {
-          id: 'summer',
-          title: 'Summer Tones',
-          date: 'May 2019',
-          location: 'Bern, Switzerland',
-          image: summer
-        },
-        {
-          id: 'power',
-          title: 'Elegant Power',
-          date: 'November 2019',
-          location: 'Lausanne, Switzerland',
-          image: power
-        },
-        {
-          id: 'minimal',
-          title: 'Minimal Sensuality',
-          date: 'March 2019',
-          location: 'Bern, Switzerland',
-          image: minimal
-        },
-        {
-          id: 'neon',
-          title: 'Neon Future',
-          date: 'November 2019',
-          location: 'Zürich, Switzerland',
-          image: neon
-        },
-        {
-          id: 'light',
-          title: 'Under a New Light',
-          date: 'September 2018',
-          location: 'Milano, Italy',
-          image: light
-        }
-      ]
-    }
-  }
+  setup() {
+    const store = useProjectsStore()
+    return { store }
+  },
 }
+
 
 </script>
 

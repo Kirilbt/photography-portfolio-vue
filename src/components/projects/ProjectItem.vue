@@ -16,6 +16,7 @@
       'title',
       'date',
       'location',
+      'type',
       'image'
     ],
     computed: {

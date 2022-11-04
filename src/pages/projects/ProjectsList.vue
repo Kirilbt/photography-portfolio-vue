@@ -2,7 +2,7 @@
   <main>
     <div class="container">
       <ProjectItem
-        v-for="project in store.projects"
+        v-for="project in projectsStore.projects"
         :id="project.id"
         :title="project.title"
         :image="project.image"
@@ -20,9 +20,9 @@ export default {
     ProjectItem
   },
   setup() {
-    const store = useProjectsStore()
-    return { store }
-  },
+    const projectsStore = useProjectsStore()
+    return { projectsStore  }
+  }
 }
 
 

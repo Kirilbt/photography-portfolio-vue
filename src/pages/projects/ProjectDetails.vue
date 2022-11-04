@@ -1,25 +1,40 @@
 <template>
   <div class="container">
-    <img class="main-image" src="../../assets/images/summer.jpg" alt="">
+    <img class="main-image" :src="this.selectedProject.image" alt="">
     <div class="project-details">
-      <h2 class="title"> {{ title }}</h2>
+      <h2 class="title"> {{ this.selectedProject.title }}</h2>
       <p class="details">
-        Model - Sabrina Barca<br>
-        Date - September 2018 <br>
-        Location - Milano, Italy
+        <!-- Model - {{ this.selectedProject.model }}<br> -->
+        <!-- MUA - {{ this.selectedProject.mua }}<br> -->
+        Date - {{ this.selectedProject.date }} <br>
+        Location - {{ this.selectedProject.location }}
       </p>
     </div>
+    <!-- <img class="image" src="../../assets/images/summer.jpg" alt="" />
     <img class="image" src="../../assets/images/summer.jpg" alt="" />
     <img class="image" src="../../assets/images/summer.jpg" alt="" />
     <img class="image" src="../../assets/images/summer.jpg" alt="" />
-    <img class="image" src="../../assets/images/summer.jpg" alt="" />
-    <img class="image" src="../../assets/images/summer.jpg" alt="" />
+    <img class="image" src="../../assets/images/summer.jpg" alt="" /> -->
   </div>
 </template>
 
 <script>
-  export default {
+  import { useProjectsStore } from '../../stores/projects.js'
 
+  export default {
+    props: ['id'],
+    data() {
+      return {
+        selectedProject: null
+      }
+    },
+    setup() {
+      const projectsStore = useProjectsStore()
+      return { projectsStore }
+    },
+    created() {
+      this.selectedProject = this.projectsStore.projects.find(project => project.id === this.id)
+    }
   }
 </script>
 

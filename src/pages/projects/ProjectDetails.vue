@@ -10,11 +10,9 @@
         Location - {{ this.selectedProject.location }}
       </p>
     </div>
-    <!-- <img class="image" src="../../assets/images/summer.jpg" alt="" />
-    <img class="image" src="../../assets/images/summer.jpg" alt="" />
-    <img class="image" src="../../assets/images/summer.jpg" alt="" />
-    <img class="image" src="../../assets/images/summer.jpg" alt="" />
-    <img class="image" src="../../assets/images/summer.jpg" alt="" /> -->
+    <div class="image-gallery" v-for="image in images">
+      <img class="image" :src="getImageUrl(image)" alt="">
+    </div>
   </div>
 </template>
 
@@ -25,7 +23,8 @@
     props: ['id'],
     data() {
       return {
-        selectedProject: null
+        selectedProject: null,
+        images: 10
       }
     },
     setup() {
@@ -34,6 +33,11 @@
     },
     created() {
       this.selectedProject = this.projectsStore.projects.find(project => project.id === this.id)
+    },
+    methods: {
+      getImageUrl(num) {
+        return new URL(`../../assets/images/${this.selectedProject.id}/${this.selectedProject.id}${num}.jpg`, import.meta.url).href
+      }
     }
   }
 </script>
@@ -66,6 +70,10 @@
 
   .details {
     line-height: 1.5;
+  }
+
+  .image-gallery {
+    display: flex;
   }
 
   .image {

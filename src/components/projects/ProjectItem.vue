@@ -2,7 +2,7 @@
   <section class="section">
     <div>
       <router-link class="project" :to="projectDetailLink">
-        <img class="image" :src="image" alt="">
+        <img class="image" :src="cover" alt="">
       </router-link>
     </div>
     <h2 class="title">{{ title }}</h2>
@@ -17,7 +17,7 @@
       'date',
       'location',
       'type',
-      'image'
+      'cover'
     ],
     computed: {
       projectDetailLink() {

@@ -1,18 +1,18 @@
 <template>
   <div class="container">
-    <img class="main-image" :src="this.selectedProject.image" alt="">
+    <img class="main-image" :src="this.selectedProject.fields.cover.fields.file.url" alt="">
     <div class="project-details">
-      <h2 class="title"> {{ this.selectedProject.title }}</h2>
+      <h2 class="title"> {{ this.selectedProject.fields.title }}</h2>
       <p class="details">
-        <!-- Model - {{ this.selectedProject.model }}<br> -->
-        <!-- MUA - {{ this.selectedProject.mua }}<br> -->
-        Date - {{ this.selectedProject.date }} <br>
-        Location - {{ this.selectedProject.location }}
+        Model - {{ this.selectedProject.fields.model }}<br>
+        MUA - {{ this.selectedProject.fields.mua }}<br>
+        Date - {{ this.selectedProject.fields.date }} <br>
+        Location - {{ this.selectedProject.fields.location }}
       </p>
     </div>
-    <div class="image-gallery" v-for="image in images">
-      <img class="image" :src="getImageUrl(image)" alt="">
-    </div>
+    <!-- <div class="image-gallery" v-for="image in images">
+      <img class="image" :src="" alt="">
+    </div> -->
   </div>
 </template>
 
@@ -24,7 +24,6 @@
     data() {
       return {
         selectedProject: null,
-        images: 10
       }
     },
     setup() {
@@ -32,12 +31,7 @@
       return { projectsStore }
     },
     created() {
-      this.selectedProject = this.projectsStore.projects.find(project => project.id === this.id)
-    },
-    methods: {
-      getImageUrl(num) {
-        return new URL(`../../assets/images/${this.selectedProject.id}/${this.selectedProject.id}${num}.jpg`, import.meta.url).href
-      }
+      this.selectedProject = this.projectsStore.projects.find(project => project.fields.id === this.id)
     }
   }
 </script>

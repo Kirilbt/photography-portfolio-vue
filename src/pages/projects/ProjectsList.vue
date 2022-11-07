@@ -3,9 +3,9 @@
     <div class="container">
       <ProjectItem
         v-for="project in projectsStore.projects"
-        :id="project.id"
-        :title="project.title"
-        :image="project.image"
+        :id="project.fields.id"
+        :title="project.fields.title"
+        :cover="project.fields.cover.fields.file.url"
       />
     </div>
   </main>
@@ -21,11 +21,10 @@ export default {
   },
   setup() {
     const projectsStore = useProjectsStore()
+    projectsStore.getAllProjects()
     return { projectsStore  }
   }
-}
-
-
+};
 </script>
 
 <style scoped>

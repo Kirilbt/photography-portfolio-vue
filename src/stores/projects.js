@@ -1,56 +1,36 @@
 import { defineStore } from 'pinia'
 
-import summer from '../assets/images/summer.jpg'
-import power from '../assets/images/power.jpg'
-import minimal from '../assets/images/minimal.jpg'
-import neon from '../assets/images/neon.jpg'
-import light from '../assets/images/light.jpg'
+import contentful from "contentful"; // for SSR, SSG
+import { createClient } from "contentful"; // for dev
 
 export const useProjectsStore = defineStore('projects', {
   state: () => {
     return {
-      projects: [
-        {
-          id: 'summer',
-          title: 'Summer Tones',
-          date: 'May 2019',
-          location: 'Bern, Switzerland',
-          type: 'portrait',
-          image: summer
-        },
-        {
-          id: 'power',
-          title: 'Elegant Power',
-          date: 'November 2019',
-          location: 'Lausanne, Switzerland',
-          type: 'portrait',
-          image: power
-        },
-        {
-          id: 'minimal',
-          title: 'Minimal Sensuality',
-          date: 'March 2019',
-          location: 'Bern, Switzerland',
-          type: 'portrait',
-          image: minimal
-        },
-        {
-          id: 'neon',
-          title: 'Neon Future',
-          date: 'November 2019',
-          location: 'Zürich, Switzerland',
-          type: 'portrait',
-          image: neon
-        },
-        {
-          id: 'light',
-          title: 'Under a New Light',
-          date: 'September 2018',
-          location: 'Milano, Italy',
-          type: 'portrait',
-          image: light
-        }
-      ]
+      spaceID: import.meta.env.VITE_CTF_SPACE_ID,
+      accToken: import.meta.env.VITE_CTF_ACCESS_TOKEN,
+      projects: [],
+      projectsLoading: true,
     }
-  }
-});
+  },
+  actions: {
+    async getAllProjects() {
+      const createClientFunc =
+        process.env.NODE_ENV === "development" ? createClient : contentful.createClient;
+      const client = createClientFunc({
+        space: this.spaceID,
+        accessToken: this.accToken,
+      })
+      const response = await client.getEntries({
+        // content_type: "projects",
+        limit: 100,
+      })
+      if (response.items.length > 0) {
+        this.projectsLoading = false
+        this.projects = response.items;
+      }
+    }
+  },
+  // getters: {
+  //   projects: (state) => state.projectList,
+  // }
+})

@@ -10,9 +10,9 @@
         Location - {{ this.selectedProject.fields.location }}
       </p>
     </div>
-    <!-- <div class="image-gallery" v-for="image in images">
-      <img class="image" :src="" alt="">
-    </div> -->
+    <div class="image-gallery" v-for="image in this.selectedProject.fields.images">
+      <img class="image" :src="image.fields.file.url" alt="">
+    </div>
   </div>
 </template>
 

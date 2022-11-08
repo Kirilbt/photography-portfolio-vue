@@ -5,10 +5,48 @@
 
 <template>
   <TheHeaderVue />
-  <router-view></router-view>
+  <router-view v-slot="slotProps">
+    <transition name="route" mode="out-in">
+      <component :is="slotProps.Component"></component>
+    </transition>
+  </router-view>
   <TheFooterVue />
 </template>
 
-<style scoped>
+<style>
+  .route-enter-active {
+    animation: fade-in .4s ease-out;
+  }
 
+  .route-leave-active {
+    animation: fade-out .4s ease-in;
+  }
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+
+    70% {
+      opacity: .5;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+
+    70% {
+      opacity: .5;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
 </style>

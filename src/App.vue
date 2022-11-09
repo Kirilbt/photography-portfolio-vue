@@ -27,10 +27,6 @@
       opacity: 0;
     }
 
-    70% {
-      opacity: .5;
-    }
-
     100% {
       opacity: 1;
     }
@@ -39,10 +35,6 @@
   @keyframes fade-out {
     0% {
       opacity: 1;
-    }
-
-    70% {
-      opacity: .5;
     }
 
     100% {

@@ -3,12 +3,12 @@
     <img class="main-image" :src="this.selectedProject.fields.cover.fields.file.url" alt="">
     <div class="project-details">
       <h2 class="title"> {{ this.selectedProject.fields.title }}</h2>
-      <p class="details">
-        Model - {{ this.selectedProject.fields.model }}<br>
-        MUA - {{ this.selectedProject.fields.mua }}<br>
+      <div class="details">
+        <div v-if="this.selectedProject.fields.model">Model - {{ this.selectedProject.fields.model.join(', ') }}</div>
+        <div v-if="this.selectedProject.fields.mua">MUA - {{ this.selectedProject.fields.mua.join(', ') }}</div>
         Date - {{ this.selectedProject.fields.date }} <br>
         Location - {{ this.selectedProject.fields.location }}
-      </p>
+      </div>
     </div>
     <div class="image-gallery" v-for="image in this.selectedProject.fields.images">
       <img class="image" :src="image.fields.file.url" alt="">
@@ -73,5 +73,10 @@
   .image {
     height: 100vh;
     margin-left: 0.5rem;
+  }
+
+  .test {
+    display: flex;
+    justify-content: space-between;
   }
 </style>

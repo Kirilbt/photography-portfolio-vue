@@ -1,5 +1,5 @@
 <template>
-  <section class="section">
+  <section class="section" :data-color="color">
     <div>
       <router-link class="project" :to="projectDetailLink">
         <img class="image" :src="cover" alt="">
@@ -17,7 +17,8 @@
       'date',
       'location',
       'type',
-      'cover'
+      'cover',
+      'color'
     ],
     computed: {
       projectDetailLink() {

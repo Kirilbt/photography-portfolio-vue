@@ -6,6 +6,7 @@
         :id="project.fields.id"
         :title="project.fields.title"
         :cover="project.fields.cover.fields.file.url"
+        :color="project.fields.color"
       />
     </div>
   </main>
@@ -14,6 +15,10 @@
 <script>
 import ProjectItem from '../../components/projects/ProjectItem.vue'
 import { useProjectsStore } from '../../stores/projects.js'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 export default {
   components: {
@@ -23,6 +28,39 @@ export default {
     const projectsStore = useProjectsStore()
     projectsStore.getAllProjects()
     return { projectsStore  }
+  },
+  mounted() {
+    this.sections = gsap.utils.toArray('.section')
+
+    // Change background color on scroll
+
+    this.sections.map((elem) => {
+
+      var bgColor = elem.getAttribute('data-color');
+
+      let trigger = ScrollTrigger.create({
+        trigger: elem,
+        start: 'top 5%',
+        end: 'bottom 5%',
+        markers: true,
+        onToggle() {
+          gsap.to('body', {
+            backgroundColor: bgColor,
+            duration: '1.2'
+          })
+        }
+      });
+
+      return () => {
+        bgColor = elem.getAttribute('data-color')
+        if (trigger.isActive) {
+          gsap.killTweensOf('body');
+          gsap.set('body', {
+            backgroundColor: bgColor
+          })
+        }
+      }
+      })
   }
 };
 </script>

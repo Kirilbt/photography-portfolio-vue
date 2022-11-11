@@ -19,6 +19,8 @@
 <script>
   import { useProjectsStore } from '../../stores/projects.js'
 
+  import Lenis from '@studio-freight/lenis'
+
   export default {
     props: ['id'],
     data() {
@@ -73,10 +75,5 @@
   .image {
     height: 100vh;
     margin-left: 0.5rem;
-  }
-
-  .test {
-    display: flex;
-    justify-content: space-between;
   }
 </style>

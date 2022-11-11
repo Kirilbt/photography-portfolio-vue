@@ -15,8 +15,11 @@
 <script>
 import ProjectItem from '../../components/projects/ProjectItem.vue'
 import { useProjectsStore } from '../../stores/projects.js'
+
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+import Lenis from '@studio-freight/lenis'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -41,8 +44,8 @@ export default {
       let trigger = ScrollTrigger.create({
         trigger: elem,
         start: 'top 5%',
-        end: 'bottom 5%',
-        markers: true,
+        end: 'bottom 95%',
+        markers: false,
         onToggle() {
           gsap.to('body', {
             backgroundColor: bgColor,
@@ -60,7 +63,33 @@ export default {
           })
         }
       }
-      })
+    })
+
+    // Smooth Scroll
+
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
+      direction: 'vertical', // vertical, horizontal
+      gestureDirection: 'vertical', // vertical, horizontal, both
+      smooth: true,
+      mouseMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
+    })
+
+    // //get scroll value
+    // lenis.on('scroll', ({ scroll, limit, velocity, direction, progress }) => {
+    //   console.log({ scroll, limit, velocity, direction, progress })
+    // })
+
+    function raf(time) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
   }
 };
 </script>

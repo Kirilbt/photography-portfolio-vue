@@ -1,35 +1,39 @@
 <template>
-  <div class="container">
-    <img class="main-image" :src="this.selectedProject.fields.cover.fields.file.url" alt="">
-    <div class="project-details">
-      <h2 class="title"> {{ this.selectedProject.fields.title }}</h2>
-      <div class="details">
-        <div v-if="this.selectedProject.fields.model">Model - {{ this.selectedProject.fields.model.join(', ') }}</div>
-        <div v-if="this.selectedProject.fields.mua">MUA - {{ this.selectedProject.fields.mua.join(', ') }}</div>
-        Date - {{ this.selectedProject.fields.date }} <br>
-        Location - {{ this.selectedProject.fields.location }}
+  <main>
+    <div class="container" v-if="this.selectedProject">
+      <img class="main-image" :src="this.selectedProject.fields.cover.fields.file.url" alt="">
+      <div class="project-details">
+        <h2 class="title"> {{ this.selectedProject.fields.title }}</h2>
+        <div class="details">
+          <div v-if="this.selectedProject.fields.model">Model - {{ this.selectedProject.fields.model.join(', ') }}</div>
+          <div v-if="this.selectedProject.fields.mua">MUA - {{ this.selectedProject.fields.mua.join(', ') }}</div>
+          Date - {{ this.selectedProject.fields.date }} <br>
+          Location - {{ this.selectedProject.fields.location }}
+        </div>
+      </div>
+      <div class="image-gallery" v-for="image in this.selectedProject.fields.images">
+        <img class="image" :src="image.fields.file.url" alt="">
       </div>
     </div>
-    <div class="image-gallery" v-for="image in this.selectedProject.fields.images">
-      <img class="image" :src="image.fields.file.url" alt="">
-    </div>
-  </div>
+  </main>
 </template>
 
 <script>
   import { useProjectsStore } from '../../stores/projects.js'
 
-  import Lenis from '@studio-freight/lenis'
-
   export default {
     props: ['id'],
     data() {
       return {
-        selectedProject: null,
+        selectedProject: null
       }
     },
     setup() {
       const projectsStore = useProjectsStore()
+      if(projectsStore.projects === undefined) projectsStore.getAllProjects()
+      // fetch data
+      //1) check if store is empty
+      //2) if store is empty => fetch
       return { projectsStore }
     },
     created() {

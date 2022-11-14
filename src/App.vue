@@ -1,10 +1,12 @@
 <script setup>
   import TheHeaderVue from './components/layout/TheHeader.vue';
   import TheFooterVue from './components/layout/TheFooter.vue';
+  import TheCanvasVue from './components/layout/TheCanvas.vue';
 </script>
 
 <template>
   <TheHeaderVue />
+  <TheCanvasVue />
   <router-view v-slot="slotProps">
     <transition name="route" mode="out-in">
       <component :is="slotProps.Component"></component>

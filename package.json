@@ -9,8 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@studio-freight/lenis": "^0.2.21",
     "contentful": "^9.2.9",
+    "events": "^3.3.0",
     "gsap": "^3.11.3",
     "pinia": "^2.0.23",
     "vue": "^3.2.41",

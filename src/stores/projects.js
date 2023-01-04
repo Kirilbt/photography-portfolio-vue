@@ -1,13 +1,16 @@
 import { defineStore } from 'pinia'
 
-import contentful from "contentful"; // for SSR, SSG
-import { createClient } from "contentful"; // for dev
+import contentful from "contentful" // for SSR, SSG
+import { createClient } from "contentful" // for dev
+
+const spaceID = import.meta.env.VITE_CTF_SPACE_ID
+const accToken = import.meta.env.VITE_CTF_ACCESS_TOKEN
 
 export const useProjectsStore = defineStore('projects', {
   state: () => {
     return {
-      spaceID: import.meta.env.VITE_CTF_SPACE_ID,
-      accToken: import.meta.env.VITE_CTF_ACCESS_TOKEN,
+      spaceID: spaceID,
+      accToken: accToken,
       projects: [],
       projectsLoading: true,
     }

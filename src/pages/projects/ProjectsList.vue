@@ -29,7 +29,6 @@ export default {
     const projectsStore = useProjectsStore()
     projectsStore.getAllProjects()
 
-
     return { projectsStore  }
   },
   mounted() {
@@ -40,7 +39,7 @@ export default {
 
       const bgColor = elem.getAttribute('data-color');
 
-      const trigger = ScrollTrigger.create({
+      this.trigger = ScrollTrigger.create({
         trigger: elem,
         start: 'top 5%',
         end: 'bottom 95%',
@@ -48,25 +47,14 @@ export default {
         onToggle() {
           gsap.to('body', {
             backgroundColor: bgColor,
-            duration: '1.2'
+            duration: '1'
           })
         }
-      });
-
-      // return () => {
-      //   if (trigger.isActive) {
-      //     gsap.killTweensOf('body');
-      //     gsap.set('body', {
-      //       backgroundColor: bgColor
-      //     })
-      //   }
-      // }
+      })
     })
-  },
-  unmounted() {
-    console.log('unmounted');
   }
-};
+}
+
 </script>
 
 <style scoped>

@@ -19,6 +19,7 @@
 </template>
 
 <script>
+  import { watch } from "vue"
   import { useProjectsStore } from '../../stores/projects.js'
 
   export default {
@@ -29,15 +30,21 @@
       }
     },
     setup() {
-      const projectsStore = useProjectsStore()
-      if(projectsStore.projects === undefined) projectsStore.getAllProjects()
-      // fetch data
-      //1) check if store is empty
-      //2) if store is empty => fetch
-      return { projectsStore }
+      const projectsStore = useProjectsStore();
+      if (projectsStore.projects.length === 0) projectsStore.getAllProjects();
+      return { projectsStore };
     },
     created() {
-      this.selectedProject = this.projectsStore.projects.find(project => project.fields.id === this.id)
+      const setSelectedProject = () => {
+        if (this.projectsStore.projects.length > 0) {
+          this.selectedProject = this.projectsStore.projects.find(
+            (project) => project.fields.id === this.id
+          );
+        }
+      };
+      setSelectedProject();
+
+      watch(this.projectsStore, (_) => setSelectedProject());
     }
   }
 </script>

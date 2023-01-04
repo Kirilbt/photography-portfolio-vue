@@ -31,8 +31,8 @@
     },
     setup() {
       const projectsStore = useProjectsStore();
-      if (projectsStore.projects.length === 0) projectsStore.getAllProjects();
-      return { projectsStore };
+      if (projectsStore.projects.length === 0) projectsStore.getAllProjects()
+      return { projectsStore }
     },
     created() {
       const setSelectedProject = () => {
@@ -42,9 +42,9 @@
           );
         }
       };
-      setSelectedProject();
+      setSelectedProject()
 
-      watch(this.projectsStore, (_) => setSelectedProject());
+      watch(this.projectsStore, (_) => setSelectedProject())
     }
   }
 </script>

@@ -4,11 +4,15 @@
   </div>
 </template>
 
-<!-- <script>
+<script>
   import Experience from '../../experience/Experience';
 
-  const experience = new Experience(document.querySelector('.experience-canvas'))
-</script> -->
+  export default {
+    mounted() {
+      const experience = new Experience(document.querySelector('.experience-canvas'))
+    }
+  }
+</script>
 
 <style scoped>
   .experience {

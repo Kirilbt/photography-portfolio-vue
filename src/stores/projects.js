@@ -24,12 +24,13 @@ export const useProjectsStore = defineStore('projects', {
         accessToken: this.accToken,
       })
       const response = await client.getEntries({
-        // content_type: "projects",
-        limit: 100,
+        content_type: 'project',
+        'fields.type': 'portrait',
+        limit: 10,
       })
-      if (response.items.length > 0) {
+      if (response.items.length > 0 ) {
         this.projectsLoading = false
-        this.projects = response.items;
+        this.projects = response.items
       }
     }
   },
